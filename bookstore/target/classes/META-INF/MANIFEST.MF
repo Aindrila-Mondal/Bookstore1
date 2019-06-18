@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: BookStoreApp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: evision
+Implementation-Vendor-Id: com.cg.bookStore
+Build-Jdk: 1.8.0_65
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/BookStoreApp
+Created-By: Maven Integration for Eclipse
+
