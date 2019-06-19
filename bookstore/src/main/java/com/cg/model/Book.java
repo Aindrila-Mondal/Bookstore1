@@ -43,22 +43,23 @@ public class Book implements Serializable {
 
 	private int qunatity;
 
-	//@ManyToOne
-	//@JoinColumn(name = "categoryId")
+	
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name = "Category")
 //	@JsonBackReference("book-category")
 //	private Category category;
-	private String catName;
+	
+	private String categoryName;
 	 
 
 
-	public String getCatName() {
-		return catName;
+
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setCatName(String catName) {
-		this.catName = catName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public static long getSerialversionuid() {

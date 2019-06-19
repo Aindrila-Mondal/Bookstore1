@@ -3,17 +3,23 @@ package com.cg.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.exception.BookstoreExcepton;
 import com.cg.model.Book;
 import com.cg.service.IBookService;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
+@RequestMapping({"/api"})
 public class BookController {
 
 	@Autowired
@@ -34,13 +40,29 @@ public class BookController {
 	@GetMapping("/showBook")
 	public List<Book> showBook()
 	{
-		return bookservice.showBook();
+		try {
+			return  bookservice.showBook(); 
+		}
+		catch(BookstoreExcepton e)
+		{
+			return null;
+		}
+		
+		
 		
 	}
-	@GetMapping("/deleteBook/{bookId}")
+	@DeleteMapping("/deleteBook/{bookId}")
 	public boolean deleteAdmin(@PathVariable("bookId") int bookId)
 	{
-		return bookservice.deleteBook(bookId) ;
+		
+		
+		try {
+			return bookservice.deleteBook(bookId) ;
+		}
+		catch(BookstoreExcepton e)
+		{
+			return false;
+		}
 		
 	}
 }

@@ -1,5 +1,6 @@
 package com.cg.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dao.IBookDao;
 import com.cg.dao.ICategoryDao;
+import com.cg.exception.BookstoreExcepton;
 import com.cg.model.Book;
 @Service
 @Transactional
@@ -29,21 +31,39 @@ public class IBookServiceImpl implements IBookService{
 	}
 
 	@Override
-	public List<Book> showBook() {
+	public List<Book> showBook()throws BookstoreExcepton {
 		// TODO Auto-generated method stub
-		List<Book> booklist=bookrepo.findAll();
+		List<Book> booklist;
+		try {
+		booklist=bookrepo.findAll();
+		}
+		catch(NullPointerException e)
+		{
+			throw new BookstoreExcepton("invalid id");
+		}
+		catch(Exception e)
+		{
+			throw new BookstoreExcepton("invalid id");
+		}
 		return  booklist;
 	}
 
 	@Override
-	public boolean deleteBook(int bookId) {
+	public boolean deleteBook(int bookId) throws BookstoreExcepton {
 		// TODO Auto-generated method stub
 		boolean flag2=false;
-    
- 
+		try {
+		bookrepo.deleteById(bookId);
+		}
+		catch(NullPointerException e)
+		{
+			throw new BookstoreExcepton("invalid id");
+		}
+		catch(Exception e)
+		{
+			throw new BookstoreExcepton("invalid id");
+		}
     		
-    		bookrepo.deleteById(bookId);
-    		System.out.println("@@@@@@@@@@@@@@@@@@");
     		flag2=true;
     	
 	return flag2;
