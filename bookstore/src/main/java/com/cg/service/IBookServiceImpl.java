@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.dao.IBookDao;
 import com.cg.dao.ICategoryDao;
-import com.cg.exception.BookstoreExcepton;
+import com.cg.exception.BookstoreException;
 import com.cg.model.Book;
 @Service
 @Transactional
@@ -31,7 +31,7 @@ public class IBookServiceImpl implements IBookService{
 	}
 
 	@Override
-	public List<Book> showBook()throws BookstoreExcepton {
+	public List<Book> showBook()throws BookstoreException {
 		// TODO Auto-generated method stub
 		List<Book> booklist;
 		try {
@@ -39,17 +39,17 @@ public class IBookServiceImpl implements IBookService{
 		}
 		catch(NullPointerException e)
 		{
-			throw new BookstoreExcepton("invalid id");
+			throw new BookstoreException("invalid id");
 		}
 		catch(Exception e)
 		{
-			throw new BookstoreExcepton("invalid id");
+			throw new BookstoreException("invalid id");
 		}
 		return  booklist;
 	}
 
 	@Override
-	public boolean deleteBook(int bookId) throws BookstoreExcepton {
+	public boolean deleteBook(int bookId) throws BookstoreException {
 		// TODO Auto-generated method stub
 		boolean flag2=false;
 		try {
@@ -57,11 +57,11 @@ public class IBookServiceImpl implements IBookService{
 		}
 		catch(NullPointerException e)
 		{
-			throw new BookstoreExcepton("invalid id");
+			throw new BookstoreException("invalid id");
 		}
 		catch(Exception e)
 		{
-			throw new BookstoreExcepton("invalid id");
+			throw new BookstoreException("invalid id");
 		}
     		
     		flag2=true;

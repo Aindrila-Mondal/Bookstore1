@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Admin implements Serializable {
+public class Admin implements Serializable, Comparable<Admin> {
 
 	/**
 	 * 
@@ -72,6 +72,12 @@ public class Admin implements Serializable {
 	public Admin() {
 		super();
 		System.out.println("admin");
+	}
+
+	@Override
+	public int compareTo(Admin o) {
+		// TODO Auto-generated method stub
+		return adminName.compareTo(o.adminName);
 	}
 
 	

@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.exception.BookstoreExcepton;
+import com.cg.exception.BookstoreException;
+
 import com.cg.model.Book;
 import com.cg.service.IBookService;
 
@@ -43,7 +44,7 @@ public class BookController {
 		try {
 			return  bookservice.showBook(); 
 		}
-		catch(BookstoreExcepton e)
+		catch(BookstoreException e)
 		{
 			return null;
 		}
@@ -59,7 +60,7 @@ public class BookController {
 		try {
 			return bookservice.deleteBook(bookId) ;
 		}
-		catch(BookstoreExcepton e)
+		catch(BookstoreException e)
 		{
 			return false;
 		}

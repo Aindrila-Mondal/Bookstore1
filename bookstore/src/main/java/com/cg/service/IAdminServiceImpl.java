@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.dao.IAdminDao;
+import com.cg.exception.BookstoreException;
+
 import com.cg.model.Admin;
 
 @Service
@@ -26,7 +28,7 @@ public class IAdminServiceImpl implements IAdminService
     	
     	if(admin!=null)
     	{
-    		ad1.setAdminId(admin.getAdminId());
+    		//ad1.setAdminId(admin.getAdminId());
     		ad1.setAdminName(admin.getAdminName());
     		ad1.setEmail(admin.getEmail());
     		ad1.setPassword(admin.getPassword());
@@ -47,24 +49,44 @@ public class IAdminServiceImpl implements IAdminService
 	}
 
 	@Override
-	public List<Admin> showAdmin() {
+	public List<Admin> showAdmin() throws BookstoreException {
 		// TODO Auto-generated method stub
-		List<Admin> adminlist=adminrepo.findAll();
+		List<Admin> adminlist;
+		try {
+		adminlist=adminrepo.findAll();
+	}
+	catch(NullPointerException e)
+	{
+		throw new BookstoreException("invalid id");
+	}
+	catch(Exception e)
+	{
+		throw new BookstoreException("invalid id");
+	}
 		return  adminlist;
 	}
 
 	@Override
-	public boolean deleteAdmin(int aId) {
+	public boolean deleteAdmin(int aId) throws BookstoreException {
 		// TODO Auto-generated method stub
 		boolean flag2=false;
     
- 
+ try {
     		
     		adminrepo.deleteById(aId);
-    		System.out.println("@@@@@@@@@@@@@@@@@@");
-    		flag2=true;
-    	
-	return flag2;
+	}
+	catch(NullPointerException e)
+	{
+		throw new BookstoreException("invalid id");
+	}
+	catch(Exception e)
+	{
+		throw new BookstoreException("invalid id");
+	}
+		
+		flag2=true;
+	
+return flag2;
 	
 		
 	}
